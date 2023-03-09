@@ -2,6 +2,7 @@
 let sCount = 0;
 let shooters = [];
 let round = 'initial';
+let rollCount =0;
 let point = 0;
 let dice1 = [];
 let dice2 = [];
@@ -9,6 +10,7 @@ let diceSum = 0;
 let currentRoll =0;
 let comeout = 0;
 let hardways = [2, 4, 6, 8, 10, 12];
+let hardway = [];
 let session = 0;
 
 
@@ -101,48 +103,48 @@ function currentShooter() {
 // ---------------- NEW TRACKER -----------
 function newTrackerSetup() {
 
-    // RESET ALL VALUES
-    round = 'initial';
-    point = 0;
-    dice1 = 0;
-    dice2 = 0;
-    diceSum = 0;
+  
 }
 // ------------------------------------------
 
+// --------- DICE ROLL FUNCTION -----------------------------------
 function diceRoll() {
     for (let i = 0; i < 2; i++) {
         if (i == 0) {
             let die1 = prompt('Please enter dice 1');
-            let infoText;
-                    if (isNaN(die) || die < 1 || die > 6) {
-                        infoText = "Must enter a number from 1-6";
-                        // outputs
-                        document.getElementById("dieInfoText").innerHTML = infoText;
-                        diceRoll();
-                    } else {
-                        
-                        console.log(dice1)
-                    }                         
-            
-        } else {
             let die2 = prompt('Please enter dice 2');
             let infoText;
-                    if (isNaN(die) || die < 1 || die > 6) {
-                        infoText = "Must enter a number from 1-6";
+                    if (isNaN(die1) || die1 < 1 || die1 > 6) {
+                        infoText = "Must enter a number from 1-6 for Dice 1";
                         // outputs
                         document.getElementById("dieInfoText").innerHTML = infoText;
-                        diceRoll();
-                    } else {
-                        dice1.push(die);
-                        
-                    }                    
-        }
-          
-    }
-    dice1.push(die1);
-    dice2.push(die2);
-    console.log(dice2)
-    return dice1, dice2;
-}
+                        break;
+                    } else if (isNaN(die2) || die2 < 1 || die2 > 6) {
+                        infoText = "Must enter a number from 1-6 for Dice 2";
+                        // outputs
+                        document.getElementById("dieInfoText").innerHTML = infoText;
+                        break;
 
+                    } else {
+                        dice1.push(Number(die1));
+                        dice2.push(Number(die2));
+                        rollCount++;
+                        console.log(dice1);
+                        console.log(dice2);
+                        console.log(rollCount);
+                        return dice1, dice2, rollCount;
+                    }
+        }
+    }  
+}
+// ------------------------------------------------------------------------
+
+// ---------- Is it a HARDWAY ----------------------------------------
+function isHardway() {
+    let i = rollCount;
+    if (dice1[i] === dice2[i]) {
+        hardway.push(rollCount);
+        console.log(hardway);
+    }
+}
+// ------------------------------------------------------------------------
