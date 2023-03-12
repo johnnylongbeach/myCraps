@@ -126,16 +126,22 @@ function diceRoll() {
                         break;
 
                     } else {
+                        
                         dice1.push(Number(die1));
                         dice2.push(Number(die2));
                         rollCount++;
+                        
                         console.log(dice1);
                         console.log(dice2);
                         console.log(rollCount);
-                        return dice1, dice2, rollCount;
+                        
                     }
-        }
-    }  
+                    
+        } 
+    } 
+    
+    
+
 }
 // ------------------------------------------------------------------------
 
@@ -143,8 +149,9 @@ function diceRoll() {
 function isHardway() {
     let i = rollCount;
     if (dice1[i] === dice2[i]) {
-        hardway.push(rollCount);
+        hardway.push(i);
         console.log(hardway);
-    }
+    } 
+    
 }
 // ------------------------------------------------------------------------
